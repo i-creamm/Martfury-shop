@@ -1,0 +1,23 @@
+const express = require('express')
+const rootRouter = express.Router()
+const productRouter = require('../routers/product.routers')
+const categoryRouter = require('../routers/category.routers')
+const favoriteRouter = require('../routers/favorite.routers')
+const notifyRouter = require('../routers/notify.routers')
+const orderRouter = require('../routers/order.routers')
+const cartDetailRouter = require('../routers/cart_detail.routers')
+const orderDetailRouter = require('../routers/order_detail.routers')
+const rateRouter = require('../routers/rate.routers')
+const statisticalRouter = require('../routers/statistical.routers')
+
+    rootRouter.use('/products', productRouter)
+    rootRouter.use('/categories', categoryRouter)
+    rootRouter.use('/favorites', favoriteRouter)
+    rootRouter.use('/rates', rateRouter)
+    rootRouter.use('/notification', notifyRouter)
+    rootRouter.use('/orders', orderRouter)
+    rootRouter.use('/orderDetail', orderDetailRouter)
+    rootRouter.use('/cartDetail', cartDetailRouter)
+    rootRouter.use('/statistical', statisticalRouter)
+
+module.exports = rootRouter
