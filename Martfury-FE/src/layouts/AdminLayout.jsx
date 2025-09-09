@@ -74,7 +74,7 @@ function AdminLayout() {
                 {/* Content */}
                 <section className={`${open ? 'ml-[260px]' : 'ml-[100px]'} duration-500 flex flex-col`}>
                     {/* Header */}
-                    <header className={`fixed top-0 ${open ? 'left-[260px]' : 'left-[100px]'} duration-500 right-0 h-20 border-b bg-white flex justify-between items-center px-4 `}>
+                    <header className={`fixed top-0 ${open ? 'left-[260px]' : 'left-[100px]'} duration-500 right-0 h-20 border-b bg-white flex justify-between items-center px-4 z-10 `}>
                         
                         <div className='flex basis-[100%/2]'>
                             <RiMenuFold3Line onClick={() => {setOpen(!open)}} className={`bg-white 
