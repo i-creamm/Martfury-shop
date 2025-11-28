@@ -1,0 +1,12 @@
+{
+  "name": "project-root",
+  "private": true,
+  "scripts": {
+    "start:fe": "cd Martfury-FE && npm start",
+    "start:be": "cd Martfury-BE && npm run dev",
+    "start": "concurrently \"npm run start:fe\" \"npm run start:be\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -6,6 +6,7 @@ import Error from "../pages/Error/Error.jsx"
 import AdminLayout from "../layouts/AdminLayout.jsx";
 import Dashboard from "../pages/admin/Dashboard.jsx";
 import ProductList from "../pages/admin/ProductList.jsx";
+import CategoryList from "../pages/admin/CategoryList.jsx";
 
 export const routes = [
     {
@@ -43,6 +44,10 @@ export const routes = [
             {
                 path:'products',
                 element: <ProductList />
+            },
+            {
+                path:'categories',
+                element: <CategoryList />
             }
         ]
     }

@@ -2,21 +2,31 @@ import { useEffect, useState } from "react"
 import { getCategoryList } from "../../Services/categoryService"
 import { postProduct } from "../../Services/productService"
 
-function ModalProduct({ closeModal }) {
-    
-    const [data, setData] = useState("")
-    const [listCategory, setListCategory] = useState([])
 
+function ModalProduct({ closeModal }) {
+
+    const [form, setForm] = useState({
+        name: "",
+        category_id: "",
+        price: "",
+        status: "",
+        discount: "",
+        quantity: "",
+        entered_date: Date.now()
+    })
+    
+    const [listCategory, setListCategory] = useState([])
+    
     const listStatus = [
         {
             title : 'Active',
             color : 'text-green-500',
-            status: 1
+            statusFilter: 1
         },
         {
             title : 'Hidden',
             color : 'text-red-500',
-            status: 0
+            statusFilter: 0
         }
     ]
 
@@ -28,17 +38,22 @@ function ModalProduct({ closeModal }) {
         fetchApi()
     }, [])
 
+
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        setData({
-            ...data,
+        setForm({
+            ...form,
             [name]:value
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const result = await postProduct(form)
+        if(result){
+            closeModal(false)
+        }
     }
     
     return (
@@ -64,7 +79,7 @@ function ModalProduct({ closeModal }) {
                                     </th>
                                     {listCategory.length > 0 && (
                                         <td className="px-6 py-4">
-                                            <select name="category" id="category" className="w-full text-center rounded-xl px-3 text-black font-medium" onChange={handleChange}>
+                                            <select name="category_id" id="category_id" className="w-full text-center rounded-xl px-3 text-black font-medium" onChange={handleChange}>
                                                 <option className='text-gray-400' value='default'>--Choose category--</option>
                                                 {(listCategory || []).map((item, index) => (
                                                     <option className='text-gray-400' key={index} value={item.category_id}>{item.category_name}</option>
@@ -81,7 +96,7 @@ function ModalProduct({ closeModal }) {
                                         <ul className="flex justify-around">
                                             {listStatus.map((item, index) => (
                                                 <li key={index} className="flex mr-2">
-                                                    <input type="radio" className=" w-5 h-5 rounded-xl px-3 mr-2 font-medium" name="status" id="status" value={item.status} onChange={handleChange} /><span className={`${item.color}`}>{item.title}</span>
+                                                    <input type="radio" className=" w-5 h-5 rounded-xl px-3 mr-2 font-medium" name="status" id="status" value={item.statusFilter} onChange={handleChange} /><span className={`${item.color}`}>{item.title}</span>
                                                 </li>
                                             ))}
                                         </ul>
@@ -114,7 +129,7 @@ function ModalProduct({ closeModal }) {
                             </tbody>
                         </table>
                         <div className="w-4/5 text-right">
-                            <input value="Submit" type="submit" className="hover:bg-green-500 text-white cursor-pointer w-auto mt-5 text-xs border border-black bg-gray-500 inline-block text-center rounded-3xl py-1 px-5 " />
+                            <input  value="Submit" type="submit" className="hover:bg-green-500 text-white cursor-pointer w-auto mt-5 text-xs border border-black bg-gray-500 inline-block text-center rounded-3xl py-1 px-5 " />
                         </div>
                     </form>
                 </div>

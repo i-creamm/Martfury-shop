@@ -16,7 +16,7 @@ function MainLayout() {
         <>
              <header className="header relative shadow-[0_1px_3px_rgba(0,0,0,0.1)]">
                 <div className='header-top text-lg text-center p-2 w-full bg-[var(--color-primary)] text-[var(--color-second)]'>
-                    Due to the COVID 19 epidemic, orders may be processed with a slight delay
+                    Welcome To Martfury
                 </div>
                 <div className='header-main'>
                     <div className='container'>

@@ -38,6 +38,13 @@ function AdminLayout() {
                     icon: <TfiDashboard/>
                 }
             ]
+        },
+        {
+            name: "Categories",
+            link: "/admin/categories",
+            spacing: false,
+            icon: <TfiDashboard/>,
+            subMenu: []
         }
     ]
 

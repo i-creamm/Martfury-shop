@@ -22,21 +22,18 @@ const editProduct = async (req, res) => {
 }
 
 const createProduct = async (req, res) => {
-    if(await Product.findOne(req.body)) throw new badRequestError('Sản phẩm đã tồn tại trong hệ thống');
+    if(await Product.findOne({where: {
+        name: req.body.name
+    }})) throw new badRequestError('Sản phẩm đã tồn tại trong hệ thống');
     res.status(statusCode.CREATED).json(
         await Product.create(req.body)
     )
 }
 
 const getAll = async (req, res) => {
-    const {page = 1, limit = 10} = req.query
-    const offset = (page - 1) * limit
-    console.log(limit)
     res.status(statusCode.OK).json(
         await Product.findAll({ 
             where: { status: true }, 
-            limit:limit,
-            offset:offset, 
             include:
             {
                 model: Category

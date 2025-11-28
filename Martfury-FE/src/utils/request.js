@@ -18,3 +18,12 @@ export const post = async (path, options = {}) => {
     const result = await res.json()
     return result
 }
+
+export const del = async (path) => {
+    const res = await fetch(API_DOMAIN + path, {
+        method: "DELETE"
+    })
+    const result = await res.json()
+    return result
+}
+

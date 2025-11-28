@@ -1,4 +1,4 @@
-import { get , post } from "../utils/request";
+import { get , post, del } from "../utils/request";
 const routerName = 'products'
 
 //api for client
@@ -38,8 +38,13 @@ export const getProductBestSellerAdmin = async () => {
     return result;
 }
 
-export const postProduct = async (data) => {
-    const result = await post(`${routerName}`, data)
+export const postProduct = async (options) => {
+    const result = await post(`${routerName}`, options)
+    return result;
+}
+
+export const deleteProduct = async (id) => {
+    const result = await del(`${routerName}/${id}`)
     return result;
 }
 
